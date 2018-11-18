@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bss.dao.IUserDao">
+    <select id="getMysqlVersion" resultType="java.lang.String">
+        select version()
+    </select>
+
+    <select id="getMenuList" resultType="java.util.HashMap">
+        select m.menu_id id, m.menu_name text,m.menu_pa_id
+        pid,m.menu_id,m.menu_name,m.menu_url,m.disp_ord,m.menu_leaf,m.permission_id,m.menu_icon
+        from bsscloud.bss_menu m where m.stop_sign='0'
+    </select>
+
+    <select id="loginSelect" resultType="java.util.HashMap" parameterType="com.bss.entity.User">
+        select t.USERID, t.USER_NAME, t.USER_PASSWD, t.PASSWD_MODIFY_DATE, PHONE, EMAIL,
+        t.CREATE_DATE, t.STATUS, t.IS_SUPER_ADMIN, t.OPERATOR_CODE, re.ROLEID
+        from bsscloud.bss_login_staff t
+        inner join bsscloud.user_role_rela re on t.USERID=re.USERID
+        inner join bsscloud.user_role r on r.ROLEID=re.ROLEID
+        where t.USER_NAME=#{user_name}
+    </select>
+
+    <update id="updateUserLockStatus" parameterType="java.util.HashMap">
+        update bsscloud.bss_login_staff set
+        STATUS = #{status}
+        WHERE id = #{userId}
+    </update>
+</mapper>

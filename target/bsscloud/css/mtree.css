@@ -1,0 +1,369 @@
+
+ul.mtree {
+    opacity: 0;
+    margin-left: 0;
+    padding: 0em;
+}
+
+ul.mtree ul {
+    margin-left: 1em;
+}
+
+ul.mtree li {
+    list-style: none;
+    font-family: '微软雅黑', '宋体', Arial;
+    font-size: 12px;
+}
+
+ul.mtree a {
+    display: block;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+ul.mtree li.mtree-node > a {
+    /* font-weight: bold; */
+    color: #FFFFFF;
+}
+
+ul.mtree a {
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+}
+
+ul.mtree.bubba ul {
+    margin-left: 0;
+}
+
+ul.mtree.bubba li.mtree-node > a:after {
+    content: '>';
+    margin-right: 27px;
+    font-weight: normal;
+    float: right;
+}
+
+ul.mtree.bubba li li.mtree-node > a:after {
+    content: '+';
+    margin-right: 27px;
+    font-weight: normal;
+    float: right;
+}
+
+ul.mtree.bubba li.mtree-node > a {
+    font-size: 16px;
+    /* font-weight: bold; */
+    /* text-transform: upperCase; */
+}
+
+ul.mtree.bubba li li.mtree-node > a {
+    font-size: 14px;
+}
+
+ul.mtree.bubba > li {
+    border-bottom: 0px solid #DDD;
+}
+
+ul.mtree.bubba > li:last-child {
+    border-bottom: none;
+}
+
+ul.mtree.bubba li:last-child > a {
+    border: none;
+}
+
+ul.mtree.bubba > li.mtree-open > a {
+    background: #272f38;
+    color: #00a0df;
+    /* content: 'v';
+    margin-right: 1em;
+    float: right; */
+}
+
+ul.mtree.bubba > li.mtree-open > a:after {
+    content: 'v';
+    font-size: 1px;
+    font-weight: normal;
+    margin-top: 4px;
+    margin-right: 29px;
+}
+
+ul.mtree.bubba > li li.mtree-open > a:after {
+    content: '-';
+    /* font-size: 1px; */
+    font-weight: normal;
+    margin-top: 2px;
+    margin-right: 29px;
+    float: right;
+}
+
+ul.mtree.bubba li > a:hover {
+    background: #184e6b;
+    text-decoration: none;
+}
+
+ul.mtree.bubba li > a:link {
+    text-decoration: none;
+}
+
+ul.mtree.bubba li > a:visited {
+    text-decoration: none;
+}
+
+ul.mtree.bubba li.mtree-active > a {
+    background: #272f37;
+    color: #FFF;
+    /* background: url('../images/bi/onSelected.png') no-repeat left center; */
+}
+
+ul.mtree.bubba li.mtree-active > a.no-list:after {
+    content:'';
+    width:16px;
+    height:16px;
+    margin-top:3px;
+}
+
+ul.mtree.bubba li.mtree-active > a:after {
+    content: 'v';
+    margin-right: 29px;
+    margin-top: 4px;
+    font-weight: normal;
+    font-size: 1px;
+    float: right;
+}
+
+ul.mtree.bubba li li.mtree-active.mtree-open.mtree-node > a:after {
+    content: '-';
+    margin-right: 29px;
+    margin-top: 2px;
+    font-weight: normal;
+    /* font-size: 1px; */
+    float: right;
+}
+
+ul.mtree.bubba li li.mtree-active > a {
+    color: #FFF;
+    /*background: url('../images/menu/onSelected.png') no-repeat left center;*/
+}
+
+ul.mtree.bubba li li.mtree-active > a:after {
+    content: '';
+}
+
+ul.mtree.bubba a {
+    padding: 7px 0px 7px 15px;
+}
+
+ul.mtree.bubba li li > a {
+    padding-left: 30px;
+    color: #989898;
+    font-size: 14px;
+    background-color: #272f37;
+}
+
+ul.mtree.bubba li li li > a {
+    padding-left: 70px;
+}
+
+ul.mtree.bubba li li li li > a {
+    padding-left: 4em;
+}
+
+ul.mtree.bubba li li li li li > a {
+    padding-left: 5em;
+}
+
+ul.mtree.skinny li {
+    font-size: .9em;
+}
+
+ul.mtree.skinny a {
+    padding: 0px 18px;
+    color: #555;
+}
+
+ul.mtree.skinny a:hover {
+    text-decoration: underline;
+}
+
+ul.mtree.skinny li.mtree-node:before {
+    float: left;
+    margin-left: .5em;
+    zoom: .8;
+    margin-top: .1em;
+    color: #777;
+}
+
+ul.mtree.skinny li.mtree-open:before {
+    content: '-';
+}
+
+ul.mtree.skinny li.mtree-closed:before {
+    content: '+';
+}
+
+ul.mtree.skinny ul > li:first-child {
+    margin-top: .1em;
+}
+
+ul.mtree.skinny ul > li:last-child {
+    margin-bottom: .3em;
+}
+
+ul.mtree.skinny ul a {
+    color: #666;
+}
+
+ul.mtree.transit {
+    background: #111;
+}
+
+ul.mtree.transit ul {
+    margin-left: 0;
+}
+
+ul.mtree.transit ul > li {
+    font-size: .9em;
+}
+
+ul.mtree.transit li.mtree-node {
+    position: relative;
+}
+
+ul.mtree.transit li.mtree-node > a:before {
+    color: #CCC;
+    font-weight: normal;
+    position: absolute;
+    right: 20px;
+}
+
+ul.mtree.transit li.mtree-open > a:before {
+    content: '-';
+}
+
+ul.mtree.transit li.mtree-closed > a:before {
+    content: '+';
+}
+
+ul.mtree.transit ul > li:first-child {
+    margin-top: 1px;
+}
+
+ul.mtree.transit li.mtree-open > a {
+    background: #222;
+}
+
+ul.mtree.transit li > a:hover, ul.mtree.transit li.mtree-active > a {
+    background: #333;
+    color: #FFF;
+}
+
+ul.mtree.transit li.mtree-node > ul > li:last-child {
+    margin-bottom: .5em;
+    padding-bottom: .5em;
+    border-bottom: 1px solid #333;
+}
+
+ul.mtree.transit li.mtree-node:last-child > ul > li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+ul.mtree.transit a {
+    padding: 5px 0px 5px 0.8em;
+    color: #CCC;
+}
+
+ul.mtree.transit li li > a {
+    padding-left: 1.6em;
+}
+
+ul.mtree.transit li li li > a {
+    padding-left: 2.4em;
+}
+
+ul.mtree.transit li li li li > a {
+    padding-left: 3.2em;
+}
+
+ul.mtree.transit li li li li li > a {
+    padding-left: 4em;
+}
+
+ul.mtree.jet ul {
+    margin-left: 0;
+}
+
+ul.mtree.jet li {
+    margin-bottom: 1px;
+}
+
+ul.mtree.jet li:last-child {
+    margin-bottom: 0px;
+}
+
+ul.mtree.jet li:first-child {
+    margin-top: 1px;
+}
+
+ul.mtree.jet li.mtree-active a {
+    background: #E3E3E3;
+}
+
+ul.mtree.jet li.mtree-active li:last-child > a {
+    border-radius: 0px 0px 3px 3px;
+}
+
+ul.mtree.jet li.mtree-active > a {
+    background: #008cba;
+    color: #FFF;
+    border-radius: 3px 3px 0px 0px;
+}
+
+ul.mtree.jet li > a:hover {
+    background: #FFC000;
+    color: #FFF;
+}
+
+ul.mtree.jet a {
+    padding: 5px 0px 5px 1em;
+}
+
+ul.mtree.jet li li > a {
+    padding-left: 2em;
+}
+
+ul.mtree.jet li li li > a {
+    padding-left: 3em;
+}
+
+ul.mtree.jet li li li li > a {
+    padding-left: 4em;
+}
+
+ul.mtree.jet li li li li li > a {
+    padding-left: 5em;
+}
+
+ul.mtree.nix {
+    background: none;
+}
+
+ul.mtree.nix a {
+    display: inline;
+}
+
+ul.mtree.nix ul {
+    margin-left: 1em;
+}
+
+ul.mtree.nix ul > li {
+    list-style-position: inside;
+}
+
+ul.mtree.nix li {
+    list-style: disc;
+}

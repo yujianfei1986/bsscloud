@@ -1,0 +1,52 @@
+.nav_bar_div {
+    display: inline-block;
+    background: no-repeat center left;
+    height: 46px;
+    line-height: 46px;
+    margin-right: 5px;
+    cursor: pointer;
+    float: right;
+}
+
+.nav_bar_div span {
+    font-size: 14px;
+    font-family: '微软雅黑';
+    color: #FFFFFF;
+    display: inline-block;
+    /* margin-left: 32px; */
+}
+
+.arrow {
+    display: inline-block;
+    height: 46px;
+    line-height: 46px;
+    margin-right: 5px;
+    float: right;
+    background: url(../skin/img/arrow.png) no-repeat center left;
+}
+
+.img_menu_switch {
+    float: left;
+    width: 6px;
+    height: 100%;
+    cursor:pointer;
+    border: 0;
+    background: #6CA url("../images/menu/left-slib.gif") no-repeat 0 center;
+    clip:rect(0px 6px 40px 0px); /* 设置显示图片的某个区域，分别是上右下左的顺序设置 */
+}
+
+.img_menu_switch_r {
+    float: left;
+    width: 6px;
+    height: 100%;
+    cursor:pointer;
+    border: 0;
+    background: #6CA url("../images/menu/left-slib.gif") no-repeat -6px center;
+    clip:rect(0px 12px 40px 6px); /* 设置显示图片的某个区域，分别是上右下左的顺序设置 */
+}
+
+.center_all {
+    float: left;
+    width: calc(100% - 6px);
+    height: 100%;
+}

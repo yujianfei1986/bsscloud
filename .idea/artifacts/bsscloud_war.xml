@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="bsscloud:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="bsscloud.war">
+      <element id="artifact" artifact-name="bsscloud:war exploded" />
+    </root>
+  </artifact>
+</component>

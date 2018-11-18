@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+    <description>Spring公共配置</description>
+
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!-- 自动扫描 com 包下面的所有组件（使用了springmvc注解）-->
+    <context:component-scan base-package="com"/>
+
+    <!-- MyBatis配置 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 显式指定Mapper文件位置 -->
+        <property name="mapperLocations" value="classpath:/mybatis/*Mapper.xml"/>
+        <!-- mybatis配置文件路径 -->
+        <property name="configLocation" value="classpath:/mybatis/config.xml"/>
+    </bean>
+
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+        <!-- 这个执行器会批量执行更新语句, 还有SIMPLE 和 REUSE -->
+        <constructor-arg index="1" value="BATCH"/>
+    </bean>
+
+    <!-- 扫描basePackage接口 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 映射器接口文件的包路径， -->
+        <property name="basePackage" value="com.bss.dao"/>
+    </bean>
+
+    <!-- 数据源配置, 使用Tomcat JDBC连接池 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!-- Connection Info -->
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+        <!-- Connection Pooling Info -->
+        <!-- 连接池初始化时创建的连接数，默认为：3 -->
+        <property name="initialPoolSize" value="${jdbc.initialPoolSize}"/>
+        <!-- 连接池中保留的最大连接数 ，默认为：15-->
+        <property name="maxPoolSize" value="${jdbc.maxPoolSize}"/>
+        <!-- 连接池中保持的最小连接数，默认为：3 -->
+        <property name="minPoolSize" value="${jdbc.minPoolSize}"/>
+        <!-- 当连接池中的链接用完时，C3P0一次性创建新连接的数目，默认为3 -->
+        <property name="acquireIncrement" value="${jdbc.acquireIncrement}"/>
+        <!-- 连接池获得新连接失败时重新获取的次数，默认为30 -->
+        <property name="acquireRetryAttempts" value="${jdbc.acquireRetryAttempts}"/>
+        <!-- 两次连接的时间间隔，获取连接的等待时间，默认为：1000，单位毫秒-->
+        <property name="acquireRetryDelay" value="${jdbc.acquireRetryDelay}"/>
+        <!-- 连接的最大空闲时间，如果超过这个时间，某个连接还未被使用，则会断开掉这个连接，默认为：600，单位秒 -->
+        <property name="maxIdleTime" value="${jdbc.maxIdleTime}"/>
+        <!-- 每多少秒检测所有连接池中的空闲连接，默认为：0，不检查，单位秒 -->
+        <property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}"/>
+        <!-- 当连接池用完时，客户端调用getConnection获取链接的等待时间，超时将抛出SQL异常，默认为：0，即无限期等待，单位毫秒-->
+        <property name="checkoutTimeout" value="${jdbc.checkoutTimeout}"/>
+
+        <property name="maxIdleTimeExcessConnections" value="${jdbc.maxIdleTimeExcessConnections}"/>
+        <property name="preferredTestQuery" value="select 1"/>
+        <property name="testConnectionOnCheckout" value="${jdbc.testConnectionOnCheckout}"/>
+        <property name="testConnectionOnCheckin" value="${jdbc.testConnectionOnCheckin}"/>
+    </bean>
+
+    <!-- 使用annotation定义事务 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+
+    <bean id="dataSourceProxy" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy"
+          p:targetDataSource-ref="dataSource"/>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" p:dataSource-ref="dataSourceProxy"/>
+    <bean id="jdbcTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="dataSourceProxy"/>
+
+    <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/page/"
+          p:suffix=".jsp"/>
+
+    <bean id="applicationContextHelper" class="com.init.ApplicationContextHelper"/>
+</beans>
