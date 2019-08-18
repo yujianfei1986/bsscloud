@@ -20,7 +20,7 @@ import java.util.*;
 public class LoginService {
 
     @Resource
-    IUserDao iUserDao;
+    private IUserDao iUserDao;
 
     @Transactional(readOnly = true)
     public List<Map<String, Object>> getMenuTree(String root_id, HttpServletRequest request) throws Exception {
