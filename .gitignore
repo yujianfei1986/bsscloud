@@ -1,3 +1,5 @@
-/target/
-**/.idea/
-bsscloud.iml
+target
+.idea
+.settings
+.project
+*.iml
