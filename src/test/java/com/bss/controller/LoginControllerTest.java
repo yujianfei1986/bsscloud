@@ -1,6 +1,8 @@
 package com.bss.controller;
 
+import com.bss.base.BaseTest;
 import com.bss.entity.User;
+import com.bss.service.LoginService;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -10,17 +12,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ui.ModelMap;
 
-import javax.annotation.Resource;
-
 /**
  * Created by Admin on 2019/8/19.
  * 登陆测试
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/config/spring-servlet.xml"})
-public class LoginControllerTest {
+public class LoginControllerTest extends BaseTest {
 
-    @Resource
+    @Autowired
     private LoginController loginController;
 
     @Test
