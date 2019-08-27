@@ -2,14 +2,10 @@ package com.bss.controller;
 
 import com.bss.base.BaseTest;
 import com.bss.entity.User;
-import com.bss.service.LoginService;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ui.ModelMap;
 
 /**
