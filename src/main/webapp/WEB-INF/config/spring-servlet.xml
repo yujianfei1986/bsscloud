@@ -11,6 +11,9 @@
 
     <description>Spring公共配置</description>
 
+    <!-- Spring Context Annotation-Driven -->
+    <context:annotation-config/>
+
     <context:property-placeholder location="classpath:*.properties"/>
 
     <!-- 自动扫描 com 包下面的所有组件（使用了springmvc注解）-->
